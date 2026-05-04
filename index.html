@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>Admin Profile</title>
 
 <style>
 body {
@@ -17,17 +17,17 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* CARD STYLE */
+/* CARD */
 .card {
     background: white;
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 6px solid #6c63ff;
+    border-left: 6px solid #ff6b6b; /* admin color */
 }
 
-/* HEADER INSIDE CARD */
+/* HEADER */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -43,18 +43,18 @@ h1 {
 .edit-btn {
     padding: 6px 15px;
     border-radius: 20px;
-    border: 2px solid #6c63ff;
+    border: 2px solid #ff6b6b;
     background: transparent;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .edit-btn:hover {
-    background: #6c63ff;
+    background: #ff6b6b;
     color: white;
 }
 
-/* PROFILE SECTION */
+/* PROFILE */
 .profile {
     display: flex;
     align-items: center;
@@ -65,15 +65,15 @@ h1 {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 3px solid #6c63ff;
+    border: 3px solid #ff6b6b;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    color: #6c63ff;
+    color: #ff6b6b;
 }
 
-/* GRID LAYOUT */
+/* GRID */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -95,16 +95,27 @@ h1 {
     margin-top: 5px;
 }
 
-/* ADDRESS GRID */
-.address-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    gap: 20px;
+/* LOGOUT BUTTON */
+.logout-btn {
+    margin-top: 25px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: 2px solid #ff6b6b;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #ff6b6b;
+    color: white;
+    transform: scale(1.05);
 }
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
-    .info-grid, .address-grid {
+    .info-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -113,7 +124,7 @@ h1 {
 
 <body>
 
-<h1>Account Settings</h1>
+<h1>Admin Profile</h1>
 
 <!-- PROFILE -->
 <div class="card">
@@ -125,8 +136,8 @@ h1 {
     <div class="profile">
         <div class="avatar">👤</div>
         <div>
-            <div class="value">User Name</div>
-            <div class="label">Membership Level</div>
+            <div class="value">Admin Name</div>
+            <div class="label">Role / Staff 1</div>
         </div>
     </div>
 </div>
@@ -160,35 +171,12 @@ h1 {
         </div>
 
         <div class="info">
-            <span class="label">Membership Level</span>
-            <span class="value">Foodie Pro</span>
+            <span class="label">Role / Staff</span>
+            <span class="value">Admin #1</span>
         </div>
     </div>
-</div>
 
-<!-- ADDRESS -->
-<div class="card">
-    <div class="card-header">
-        <h2>Address</h2>
-        <button class="edit-btn">Edit</button>
-    </div>
-
-    <div class="address-grid">
-        <div class="info">
-            <span class="label">Region, City, Barangay</span>
-            <span class="value">Metro Manila, Manila, Brgy. 12</span>
-        </div>
-
-        <div class="info">
-            <span class="label">Postal Code</span>
-            <span class="value">1011</span>
-        </div>
-
-        <div class="info">
-            <span class="label">Street Name, Building, House No.</span>
-            <span class="value">Dino St., Dinosaur Subd., 1165 Tondo Manila</span>
-        </div>
-    </div>
+    <button class="logout-btn">Log-out</button>
 </div>
 
 </body>
