@@ -5,190 +5,226 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Admin Dashboard</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-:root {
-    --primary: #4f46e5;
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --border: #e5e7eb;
-    --text: #111827;
-    --sub: #6b7280;
-}
-
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    background: #fff;
+    margin: 0;
+    padding: 20px;
 }
 
-/* HEADER */
-.header {
+/* TITLE */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* TOP CARDS */
+.cards {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.search {
-    background: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
+.card {
+    flex: 1;
+    border: 2px solid #000;
+    padding: 15px;
+    text-align: center;
 }
 
-.search input {
-    border: none;
-    outline: none;
-    margin-left: 8px;
+.card i {
+    font-size: 30px;
+}
+
+.card h2 {
+    margin: 10px 0;
 }
 
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
     gap: 20px;
-    padding: 20px;
 }
 
-/* CARD */
-.card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    transition: 0.3s;
+/* BOX */
+.box {
+    border: 2px solid #000;
+    padding: 15px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+/* ROW */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    margin-top: 20px;
 }
 
-/* TITLE */
-.card h3 {
-    margin: 0 0 10px;
-    font-size: 14px;
-    color: var(--sub);
+/* CHART SIZE */
+canvas {
+    width: 100% !important;
+    height: 250px !important;
 }
 
-/* VALUE */
-.value {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* GROWTH */
-.growth {
-    font-size: 13px;
-    color: green;
-}
-
-/* LARGE CARDS */
-.large {
-    grid-column: span 2;
-}
-
-/* BAR */
-.bar {
-    height: 10px;
-    background: #e5e7eb;
-    border-radius: 10px;
-    margin: 10px 0;
-    overflow: hidden;
-}
-
-.bar-fill {
-    height: 100%;
-    background: var(--primary);
-}
-
-/* SMALL TEXT */
-.small {
-    font-size: 13px;
-    color: var(--sub);
+/* SMALL */
+.small canvas {
+    height: 200px !important;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    <h2>Super Admin Dashboard</h2>
+<h1>Dashboard</h1>
 
-    <div class="search">
-        <i class="fa fa-search"></i>
-        <input type="text" placeholder="Search your needs...">
+<!-- TOP CARDS -->
+<div class="cards">
+    <div class="card">
+        <i>🛒</i>
+        <h2>123</h2>
+        <p>Total Orders</p>
+    </div>
+
+    <div class="card">
+        <i>📦</i>
+        <h2>67</h2>
+        <p>Total Delivered</p>
+    </div>
+
+    <div class="card">
+        <i>❌</i>
+        <h2>26</h2>
+        <p>Total Cancelled</p>
+    </div>
+
+    <div class="card">
+        <i>📊</i>
+        <h2>₱1K</h2>
+        <p>Total Revenue</p>
     </div>
 </div>
 
-<!-- GRID -->
+<!-- PIE + BAR -->
 <div class="grid">
 
-    <!-- TOTAL SALES -->
-    <div class="card">
-        <h3>Total Sales</h3>
-        <div class="value">₱1,561,245</div>
-        <div class="growth">↑ 12.08% today</div>
+    <!-- PIE -->
+    <div class="box">
+        <h2>Pie Chart</h2>
+        <canvas id="pieChart"></canvas>
     </div>
 
-    <!-- TOTAL ORDERS -->
-    <div class="card">
-        <h3>Total Orders</h3>
-        <div class="value">28,265</div>
-        <div class="growth">↑ 9.08% today</div>
-    </div>
-
-    <!-- TOTAL CANCELLED -->
-    <div class="card">
-        <h3>Total Cancelled</h3>
-        <div class="value">1,245</div>
-        <div class="growth" style="color:red;">↓ -2.3% today</div>
-    </div>
-
-    <!-- STATISTICS -->
-    <div class="card large">
-        <h3>Statistics</h3>
-        <div class="small">Monthly performance</div>
-        <div class="bar"><div class="bar-fill" style="width:60%"></div></div>
-        <div class="bar"><div class="bar-fill" style="width:40%"></div></div>
-        <div class="bar"><div class="bar-fill" style="width:75%"></div></div>
-    </div>
-
-    <!-- BILLING -->
-    <div class="card">
-        <h3>Billing</h3>
-        <div class="small">Total Revenue</div>
-        <div class="value">₱582,421</div>
-        <div class="small">Refunds: ₱9,482</div>
-    </div>
-
-    <!-- AUDIENCE -->
-    <div class="card large">
-        <h3>Audience</h3>
-        <div class="small">Customer visits</div>
-
-        <div>Male</div>
-        <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
-
-        <div>Female</div>
-        <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
-    </div>
-
-    <!-- ACCOUNT OVERVIEW -->
-    <div class="card">
-        <h3>Account Overview</h3>
-        <div class="small">Arrival: ₱582,421</div>
-        <div class="small">Withdrawal: ₱360,001</div>
-        <div class="small">Balance: ₱222,420</div>
+    <!-- BAR -->
+    <div class="box">
+        <h2>Customer Map</h2>
+        <canvas id="barChart"></canvas>
     </div>
 
 </div>
+
+<!-- LOWER -->
+<div class="row">
+
+    <!-- POPULAR -->
+    <div class="box small">
+        <h2>Popular Products</h2>
+        <canvas id="productChart"></canvas>
+    </div>
+
+    <!-- LINE -->
+    <div class="box">
+        <h2>Total Revenue</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+</div>
+
+<!-- USERS -->
+<div class="box" style="margin-top:20px;">
+    <h2>Active Users</h2>
+    <canvas id="gaugeChart"></canvas>
+</div>
+
+<script>
+// PIE
+new Chart(document.getElementById("pieChart"), {
+    type: "doughnut",
+    data: {
+        labels: ["Orders", "Growth", "Revenue"],
+        datasets: [{
+            data: [81, 22, 62],
+            backgroundColor: ["red", "green", "blue"]
+        }]
+    }
+});
+
+// BAR
+new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+        labels: ["Manila", "Valenzuela", "Bulacan", "Cebu"],
+        datasets: [{
+            data: [60, 45, 80, 30],
+            backgroundColor: ["blue", "purple", "orange", "gold"]
+        }]
+    }
+});
+
+// POPULAR PRODUCTS
+new Chart(document.getElementById("productChart"), {
+    type: "pie",
+    data: {
+        labels: ["Sales", "Finance", "Marketing", "HR"],
+        datasets: [{
+            data: [55, 25, 15, 5],
+            backgroundColor: ["blue", "purple", "orange", "yellow"]
+        }]
+    }
+});
+
+// LINE
+new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+        labels: ["2021","2022","2023","2024","2025"],
+        datasets: [
+            {
+                label: "Mobile",
+                data: [12,14,15,18,24],
+                borderColor: "blue"
+            },
+            {
+                label: "Desktop",
+                data: [10,12,16,17,20],
+                borderColor: "purple"
+            },
+            {
+                label: "Tablet",
+                data: [8,9,13,15,16],
+                borderColor: "orange"
+            }
+        ]
+    }
+});
+
+// GAUGE (fake using doughnut)
+new Chart(document.getElementById("gaugeChart"), {
+    type: "doughnut",
+    data: {
+        datasets: [{
+            data: [70, 30],
+            backgroundColor: ["blue", "#eee"]
+        }]
+    },
+    options: {
+        circumference: 180,
+        rotation: 270
+    }
+});
+</script>
 
 </body>
 </html>
