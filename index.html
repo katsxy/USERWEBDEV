@@ -3,199 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carinderia Product Settings</title>
+<title>Super Admin Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
     --primary: #4f46e5;
-    --bg: #f4f6fb;
+    --bg: #f5f7fb;
     --card: #ffffff;
     --border: #e5e7eb;
+    --text: #111827;
+    --sub: #6b7280;
 }
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
+    font-family: Arial, sans-serif;
     background: var(--bg);
+    color: var(--text);
 }
 
 /* HEADER */
-h1 {
-    text-align: center;
-    padding: 20px;
-}
-
-/* SECTION */
-.section {
-    margin: 20px;
-}
-
-/* CATEGORY TITLE */
-.category {
-    margin-bottom: 25px;
-}
-
-.category h2 {
-    margin-bottom: 10px;
-}
-
-/* SUBCATEGORY */
-.sub {
-    margin-left: 15px;
-    margin-bottom: 10px;
-}
-
-/* MENU ITEM */
-.item {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin: 8px 0;
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: 0.2s;
+    padding: 20px 30px;
 }
 
-.item:hover {
-    transform: translateX(5px);
+.search {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
 }
 
-/* LEFT SIDE */
-.name {
-    font-weight: bold;
-}
-
-.price {
-    color: gray;
-    font-size: 14px;
-}
-
-/* STATUS */
-.status {
-    padding: 4px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    color: white;
-    margin-right: 10px;
-}
-
-.available { background: #10b981; }
-.soldout { background: #ef4444; }
-
-/* BUTTON */
-.btn {
+.search input {
     border: none;
-    padding: 5px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    background: var(--primary);
-    color: white;
+    outline: none;
+    margin-left: 8px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
     transition: 0.3s;
 }
 
-.btn:hover {
-    opacity: 0.8;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-/* RIGHT SIDE */
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+/* TITLE */
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--sub);
+}
+
+/* VALUE */
+.value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* GROWTH */
+.growth {
+    font-size: 13px;
+    color: green;
+}
+
+/* LARGE CARDS */
+.large {
+    grid-column: span 2;
+}
+
+/* BAR */
+.bar {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: var(--primary);
+}
+
+/* SMALL TEXT */
+.small {
+    font-size: 13px;
+    color: var(--sub);
 }
 </style>
 </head>
 
 <body>
 
-<h1>Carinderia Menu Settings</h1>
+<!-- HEADER -->
+<div class="header">
+    <h2>Super Admin Dashboard</h2>
 
-    <div style="text-align:center; margin-bottom: 20px;">
-    <input 
-        type="text" 
-        id="searchInput"
-        placeholder="Search food (e.g. Sisig, Tinola...)"
-        onkeyup="searchMenu(this.value)"
-        style="padding:10px; width:250px; border-radius:10px; border:1px solid #ccc;"
-    >
+    <div class="search">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="Search your needs...">
+    </div>
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+    <!-- TOTAL SALES -->
+    <div class="card">
+        <h3>Total Sales</h3>
+        <div class="value">₱1,561,245</div>
+        <div class="growth">↑ 12.08% today</div>
     </div>
 
-<div class="section">
+    <!-- TOTAL ORDERS -->
+    <div class="card">
+        <h3>Total Orders</h3>
+        <div class="value">28,265</div>
+        <div class="growth">↑ 9.08% today</div>
+    </div>
 
-<!-- EVERYDAY -->
-<div class="category">
-<h2>EVERYDAY (Available)</h2>
+    <!-- TOTAL CANCELLED -->
+    <div class="card">
+        <h3>Total Cancelled</h3>
+        <div class="value">1,245</div>
+        <div class="growth" style="color:red;">↓ -2.3% today</div>
+    </div>
 
-<div class="item"><div><div class="name">Longganisa</div><div class="price">₱35</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+    <!-- STATISTICS -->
+    <div class="card large">
+        <h3>Statistics</h3>
+        <div class="small">Monthly performance</div>
+        <div class="bar"><div class="bar-fill" style="width:60%"></div></div>
+        <div class="bar"><div class="bar-fill" style="width:40%"></div></div>
+        <div class="bar"><div class="bar-fill" style="width:75%"></div></div>
+    </div>
 
-<div class="item"><div><div class="name">Manok</div><div class="price">₱75</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+    <!-- BILLING -->
+    <div class="card">
+        <h3>Billing</h3>
+        <div class="small">Total Revenue</div>
+        <div class="value">₱582,421</div>
+        <div class="small">Refunds: ₱9,482</div>
+    </div>
 
-<div class="item"><div><div class="name">Porkchop</div><div class="price">₱75</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+    <!-- AUDIENCE -->
+    <div class="card large">
+        <h3>Audience</h3>
+        <div class="small">Customer visits</div>
 
-<div class="item"><div><div class="name">Dinuguan</div><div class="price">₱75</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+        <div>Male</div>
+        <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
 
-<div class="item"><div><div class="name">Tortang Talong</div><div class="price">₱50</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+        <div>Female</div>
+        <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
+    </div>
 
-<div class="item"><div><div class="name">Egg</div><div class="price">₱15</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-<div class="item"><div><div class="name">Pancit Bihon</div><div class="price">₱30</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-<div class="item"><div><div class="name">Tuyo</div><div class="price">₱10</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-<div class="item"><div><div class="name">Daing</div><div class="price">₱40</div></div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
+    <!-- ACCOUNT OVERVIEW -->
+    <div class="card">
+        <h3>Account Overview</h3>
+        <div class="small">Arrival: ₱582,421</div>
+        <div class="small">Withdrawal: ₱360,001</div>
+        <div class="small">Balance: ₱222,420</div>
+    </div>
 
 </div>
-
-<!-- MONDAY -->
-<div class="category">
-<h2>MONDAY</h2>
-
-<div class="sub"><strong>Ulam / Laman</strong></div>
-<div class="item"><div class="name">Igado - ₱75</div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-<div class="item"><div class="name">Sisig - ₱75</div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-<div class="sub"><strong>Sabaw</strong></div>
-<div class="item"><div class="name">Tinola - ₱80</div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-<div class="sub"><strong>Gulay</strong></div>
-<div class="item"><div class="name">Ginisang Ampalaya - ₱50</div><div class="actions"><span class="status available">Available</span><button class="btn" onclick="toggle(this)">Toggle</button></div></div>
-
-</div>
-
-<!-- YOU CAN CONTINUE SAME FORMAT FOR TUESDAY–SATURDAY -->
-
-</div>
-
-<script>
-function toggle(btn) {
-    let status = btn.parentElement.querySelector(".status");
-
-    if (status.classList.contains("available")) {
-        status.classList.remove("available");
-        status.classList.add("soldout");
-        status.textContent = "Sold Out";
-    } else {
-        status.classList.remove("soldout");
-        status.classList.add("available");
-        status.textContent = "Available";
-    }
-}
-
-function searchMenu(value) {
-    let items = document.querySelectorAll(".item");
-
-    items.forEach(item => {
-        let text = item.innerText.toLowerCase();
-        if (text.includes(value.toLowerCase())) {
-            item.style.display = "flex";
-        } else {
-            item.style.display = "none";
-        }
-    });
-}
-</script>
 
 </body>
 </html>
