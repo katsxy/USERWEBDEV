@@ -197,12 +197,14 @@ h1 {
         <h2>Change Password</h2>
     </div>
 
-    <input type="password" class="input-box" placeholder="Current Password"><br>
-    <input type="password" class="input-box" placeholder="New Password"><br>
-    <input type="password" class="input-box" placeholder="Confirm Password"><br>
+    <input type="password" id="currentPass" class="input-box" placeholder="Current Password"><br>
+    <input type="password" id="newPass" class="input-box" placeholder="New Password"><br>
+    <input type="password" id="confirmPass" class="input-box" placeholder="Confirm Password"><br>
+
+    <div id="message" style="font-size: 13px; margin-top: 5px;"></div>
 
     <div style="text-align: right;">
-        <button class="save-btn">Save Changes</button>
+        <button class="save-btn" onclick="validatePassword()">Save Changes</button>
     </div>
 </div>
 
@@ -211,5 +213,27 @@ h1 {
     <button class="logout-btn">Log-out</button>
 </div>
 
+<script>
+function validatePassword() {
+    let newPass = document.getElementById("newPass").value;
+    let confirmPass = document.getElementById("confirmPass").value;
+    let message = document.getElementById("message");
+
+    if (newPass === "" || confirmPass === "") {
+        message.style.color = "red";
+        message.innerText = "Please fill in all fields.";
+        return;
+    }
+
+    if (newPass !== confirmPass) {
+        message.style.color = "red";
+        message.innerText = "Passwords do not match!";
+    } else {
+        message.style.color = "green";
+        message.innerText = "Password matched! Changes saved.";
+    }
+}
+</script>
+    
 </body>
 </html>
