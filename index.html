@@ -15,13 +15,12 @@ body {
     padding: 20px;
 }
 
-/* TITLE */
 h1 {
     text-align: center;
     margin-bottom: 30px;
 }
 
-/* TOP CARDS */
+/* CARDS */
 .cards {
     display: flex;
     gap: 20px;
@@ -33,14 +32,6 @@ h1 {
     border: 2px solid #000;
     padding: 15px;
     text-align: center;
-}
-
-.card i {
-    font-size: 30px;
-}
-
-.card h2 {
-    margin: 10px 0;
 }
 
 /* GRID */
@@ -56,23 +47,20 @@ h1 {
     padding: 15px;
 }
 
-/* ROW */
-.row {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
+/* PIE CONTAINER */
+.pie-container {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
-/* CHART SIZE */
-canvas {
-    width: 100% !important;
-    height: 250px !important;
+.pie-item {
+    text-align: center;
 }
 
-/* SMALL */
-.small canvas {
-    height: 200px !important;
+canvas {
+    width: 120px !important;
+    height: 120px !important;
 }
 </style>
 </head>
@@ -83,29 +71,10 @@ canvas {
 
 <!-- TOP CARDS -->
 <div class="cards">
-    <div class="card">
-        <i>🛒</i>
-        <h2>123</h2>
-        <p>Total Orders</p>
-    </div>
-
-    <div class="card">
-        <i>📦</i>
-        <h2>67</h2>
-        <p>Total Delivered</p>
-    </div>
-
-    <div class="card">
-        <i>❌</i>
-        <h2>26</h2>
-        <p>Total Cancelled</p>
-    </div>
-
-    <div class="card">
-        <i>📊</i>
-        <h2>₱1K</h2>
-        <p>Total Revenue</p>
-    </div>
+    <div class="card"><h2>123</h2><p>Total Orders</p></div>
+    <div class="card"><h2>67</h2><p>Total Delivered</p></div>
+    <div class="card"><h2>26</h2><p>Total Cancelled</p></div>
+    <div class="card"><h2>₱1K</h2><p>Total Revenue</p></div>
 </div>
 
 <!-- PIE + BAR -->
@@ -114,7 +83,25 @@ canvas {
     <!-- PIE -->
     <div class="box">
         <h2>Pie Chart</h2>
-        <canvas id="pieChart"></canvas>
+
+        <div class="pie-container">
+
+            <div class="pie-item">
+                <canvas id="pie1"></canvas>
+                <p>Total Order</p>
+            </div>
+
+            <div class="pie-item">
+                <canvas id="pie2"></canvas>
+                <p>Customer Growth</p>
+            </div>
+
+            <div class="pie-item">
+                <canvas id="pie3"></canvas>
+                <p>Total Revenue</p>
+            </div>
+
+        </div>
     </div>
 
     <!-- BAR -->
@@ -125,103 +112,71 @@ canvas {
 
 </div>
 
-<!-- LOWER -->
-<div class="row">
-
-    <!-- POPULAR -->
-    <div class="box small">
-        <h2>Popular Products</h2>
-        <canvas id="productChart"></canvas>
-    </div>
-
-    <!-- LINE -->
-    <div class="box">
-        <h2>Total Revenue</h2>
-        <canvas id="lineChart"></canvas>
-    </div>
-
-</div>
-
-<!-- USERS -->
-<div class="box" style="margin-top:20px;">
-    <h2>Active Users</h2>
-    <canvas id="gaugeChart"></canvas>
-</div>
-
 <script>
-// PIE
-new Chart(document.getElementById("pieChart"), {
+// PIE 1
+new Chart(document.getElementById("pie1"), {
     type: "doughnut",
     data: {
-        labels: ["Orders", "Growth", "Revenue"],
         datasets: [{
-            data: [81, 22, 62],
-            backgroundColor: ["red", "green", "blue"]
+            data: [81, 19],
+            backgroundColor: ["#ef4444", "#eee"],
+            borderWidth: 0
         }]
+    },
+    options: {
+        cutout: "70%",
+        plugins: { legend: { display: false } }
     }
 });
 
-// BAR
+// PIE 2
+new Chart(document.getElementById("pie2"), {
+    type: "doughnut",
+    data: {
+        datasets: [{
+            data: [22, 78],
+            backgroundColor: ["#10b981", "#eee"],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        cutout: "70%",
+        plugins: { legend: { display: false } }
+    }
+});
+
+// PIE 3
+new Chart(document.getElementById("pie3"), {
+    type: "doughnut",
+    data: {
+        datasets: [{
+            data: [62, 38],
+            backgroundColor: ["#3b82f6", "#eee"],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        cutout: "70%",
+        plugins: { legend: { display: false } }
+    }
+});
+
+// BAR CHART (Improved)
 new Chart(document.getElementById("barChart"), {
     type: "bar",
     data: {
         labels: ["Manila", "Valenzuela", "Bulacan", "Cebu"],
         datasets: [{
             data: [60, 45, 80, 30],
-            backgroundColor: ["blue", "purple", "orange", "gold"]
-        }]
-    }
-});
-
-// POPULAR PRODUCTS
-new Chart(document.getElementById("productChart"), {
-    type: "pie",
-    data: {
-        labels: ["Sales", "Finance", "Marketing", "HR"],
-        datasets: [{
-            data: [55, 25, 15, 5],
-            backgroundColor: ["blue", "purple", "orange", "yellow"]
-        }]
-    }
-});
-
-// LINE
-new Chart(document.getElementById("lineChart"), {
-    type: "line",
-    data: {
-        labels: ["2021","2022","2023","2024","2025"],
-        datasets: [
-            {
-                label: "Mobile",
-                data: [12,14,15,18,24],
-                borderColor: "blue"
-            },
-            {
-                label: "Desktop",
-                data: [10,12,16,17,20],
-                borderColor: "purple"
-            },
-            {
-                label: "Tablet",
-                data: [8,9,13,15,16],
-                borderColor: "orange"
-            }
-        ]
-    }
-});
-
-// GAUGE (fake using doughnut)
-new Chart(document.getElementById("gaugeChart"), {
-    type: "doughnut",
-    data: {
-        datasets: [{
-            data: [70, 30],
-            backgroundColor: ["blue", "#eee"]
+            backgroundColor: ["#3b82f6", "#8b5cf6", "#f59e0b", "#facc15"],
+            borderRadius: 10
         }]
     },
     options: {
-        circumference: 180,
-        rotation: 270
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true }
+        }
     }
 });
 </script>
