@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Profile</title>
+<title>Super Admin Profile</title>
 
 <style>
 body {
@@ -24,7 +24,7 @@ h1 {
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 6px solid #ff6b6b; /* admin color */
+    border-left: 6px solid #8e44ad; /* super admin color */
 }
 
 /* HEADER */
@@ -39,19 +39,20 @@ h1 {
     margin: 0;
 }
 
-/* EDIT BUTTON */
-.edit-btn {
-    padding: 6px 15px;
+/* BUTTON */
+.edit-btn, .save-btn, .logout-btn {
+    padding: 8px 18px;
     border-radius: 20px;
-    border: 2px solid #ff6b6b;
+    border: 2px solid #8e44ad;
     background: transparent;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.edit-btn:hover {
-    background: #ff6b6b;
+.edit-btn:hover, .save-btn:hover, .logout-btn:hover {
+    background: #8e44ad;
     color: white;
+    transform: scale(1.05);
 }
 
 /* PROFILE */
@@ -65,12 +66,12 @@ h1 {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 3px solid #ff6b6b;
+    border: 3px solid #8e44ad;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    color: #ff6b6b;
+    color: #8e44ad;
 }
 
 /* GRID */
@@ -95,22 +96,26 @@ h1 {
     margin-top: 5px;
 }
 
-/* LOGOUT BUTTON */
-.logout-btn {
-    margin-top: 25px;
-    padding: 12px 30px;
+/* INPUTS */
+.input-box {
+    width: 300px;
+    padding: 10px 15px;
     border-radius: 25px;
-    border: 2px solid #ff6b6b;
-    background: transparent;
-    font-size: 16px;
-    cursor: pointer;
+    border: 2px solid #ccc;
+    outline: none;
+    margin-bottom: 10px;
     transition: 0.3s;
 }
 
-.logout-btn:hover {
-    background: #ff6b6b;
-    color: white;
-    transform: scale(1.05);
+.input-box:focus {
+    border-color: #8e44ad;
+}
+
+/* FOOTER BUTTONS */
+.bottom-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* RESPONSIVE */
@@ -118,13 +123,22 @@ h1 {
     .info-grid {
         grid-template-columns: 1fr;
     }
+
+    .input-box {
+        width: 100%;
+    }
+
+    .bottom-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>Admin Profile</h1>
+<h1>Super Admin Profile</h1>
 
 <!-- PROFILE -->
 <div class="card">
@@ -136,8 +150,8 @@ h1 {
     <div class="profile">
         <div class="avatar">👤</div>
         <div>
-            <div class="value">Admin Name</div>
-            <div class="label">Role / Staff 1</div>
+            <div class="value">Super Admin Name</div>
+            <div class="label">Super Admin</div>
         </div>
     </div>
 </div>
@@ -171,11 +185,29 @@ h1 {
         </div>
 
         <div class="info">
-            <span class="label">Role / Staff</span>
-            <span class="value">Admin #1</span>
+            <span class="label">Role</span>
+            <span class="value">Super Admin</span>
         </div>
     </div>
+</div>
 
+<!-- CHANGE PASSWORD -->
+<div class="card">
+    <div class="card-header">
+        <h2>Change Password</h2>
+    </div>
+
+    <input type="password" class="input-box" placeholder="Current Password"><br>
+    <input type="password" class="input-box" placeholder="New Password"><br>
+    <input type="password" class="input-box" placeholder="Confirm Password"><br>
+
+    <div style="text-align: right;">
+        <button class="save-btn">Save Changes</button>
+    </div>
+</div>
+
+<!-- LOGOUT -->
+<div style="text-align: right;">
     <button class="logout-btn">Log-out</button>
 </div>
 
